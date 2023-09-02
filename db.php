@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$dbname = "rss";
-$dbuser = "rss_user";
-$dbpass = "e#XwGvRG3F%36hyQwKQd";
+include 'config.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbuser, $dbpass);
