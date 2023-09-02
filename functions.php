@@ -21,15 +21,34 @@ function displayToast($message, $type = 'error') {
         <div class='toast-body'>
             $message
         </div>
+        <div class='progress' style='height: 0.1rem;'>
+    <div class='progress-bar' role='progressbar' style='width: 100%' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'></div>
+</div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function(event) { 
             var toastEl = document.querySelector('.toast');
-            var toast = new bootstrap.Toast(toastEl, {delay: 15000});
+            var toast = new bootstrap.Toast(toastEl, {delay: 5000});
             toast.show();
+
+            var progressBar = toastEl.querySelector('.progress-bar');
+            var totalDuration = 5000;
+            var timeElapsed = 0;
+            var interval = 100; // check every 100 milliseconds
+            var intervalID = setInterval(function() {
+                timeElapsed += interval;
+                var percentageRemaining = 100 - ((timeElapsed / totalDuration) * 100);
+                progressBar.style.width = percentageRemaining + '%';
+                progressBar.setAttribute('aria-valuenow', percentageRemaining);
+
+                if (timeElapsed >= totalDuration) {
+                    clearInterval(intervalID);
+                }
+            }, interval);
         });
     </script>";
 }
+
 
 function storeRememberMeToken($username, $token, $conn) {
     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
