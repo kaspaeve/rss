@@ -1,0 +1,23 @@
+.blurred-bg {
+    background-image: 
+        linear-gradient(rgba(210, 180, 140, 0.2), rgba(210, 180, 140, 0.6)),
+        url('img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    
+    /* Adjustments */
+    position: relative;
+    top: 60px;  /* This assumes your navbar is 60px in height. Adjust if different */
+    width: 100%;
+    height: calc(100vh - 60px);  /* Take up the rest of the viewport height */
+    z-index: 1;
+    overflow: hidden;  /* Prevent content from spilling outside */
+}
+
+.overlay-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
